@@ -73,6 +73,7 @@ class Auth {
   }) async {
     try {
       await _firebaseAuth.signInAnonymously();
+      Navigator.of(context).pushNamed('/topics');
     } on FirebaseAuthException catch (error) {
       print('Error signInAnonymously: $error');
       ScaffoldMessenger.of(context).showSnackBar(
