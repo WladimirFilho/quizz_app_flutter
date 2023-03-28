@@ -4,12 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'no_transitions.dart';
 
 var appTheme = ThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+    padding: const EdgeInsets.all(14),
+    backgroundColor: Colors.orangeAccent,
+    foregroundColor: Colors.blue,
+  )),
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       for (final platform in TargetPlatform.values) platform: const NoTransitions(),
     },
   ),
   appBarTheme: const AppBarTheme(
+    // backgroundColor: Colors.black87,
     elevation: 0,
   ),
   fontFamily: GoogleFonts.nunito().fontFamily,

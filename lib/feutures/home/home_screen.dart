@@ -3,18 +3,25 @@ import 'package:quizz_app/feutures/topics/topics_screen.dart';
 
 import '../../services/auth.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Stream userStream = Auth().userStream;
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-      stream: Auth().userStream,
+    return StreamBuilder(
+      stream: userStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text('Waiting');
+          return const Text('Waiting');
         } else if (snapshot.hasError) {
-          return Text('Error');
+          return const Text('Error');
         } else if (snapshot.hasData) {
           return const TopicsScreen();
         }
